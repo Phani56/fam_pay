@@ -39,7 +39,7 @@ class Settings(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        'youtube.apps.YoutubeConfig',
+        'social_media.apps.SocialMediaConfig',
         'django_extensions',
     ]
 

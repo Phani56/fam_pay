@@ -1,0 +1,4 @@
+
+YOUTUBE_DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+YOUTUBE_SEARCH_QUERY = 'cricket'
+
