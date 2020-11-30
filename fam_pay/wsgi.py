@@ -11,6 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fam_pay.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.local")
+os.environ.setdefault('DJANGO_CONFIGURATION', 'Settings')
+
+from configurations.wsgi import get_wsgi_application
 
 application = get_wsgi_application()
