@@ -5,13 +5,15 @@
 __pycache__
 db.sqlite3
 media
-fam_pay/__pycache__
+fam_pay/__pycache__/
+celerybeat-schedule
+.idea/
 
 # Backup files #
 *.bak
 
 # If you are using PyCharm #
-.idea/
+
 *.iws /out/
 
 # Python #

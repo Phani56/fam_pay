@@ -1,11 +1,12 @@
 from . import common
+import os
 
 
 class Settings(common.Settings):
 
     DEBUG = True
 
-    YOUTUBE_API_KEY = 'AIzaSyDBnAddneEJDBQxV8jf68R0PYrsx0ABNYk'
+    YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 
     DATABASES = {
         "default": {

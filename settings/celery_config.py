@@ -7,7 +7,7 @@ timezone = 'UTC'
 
 beat_schedule = {
         'fetch_video_data': {
-            'task': 'fam_pay.social_media.tasks.fetch_latest_videos',
+            'task': 'social_media.tasks.fetch_latest_videos',
             'schedule': crontab(minute='*/1')
         }
     }

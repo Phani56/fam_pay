@@ -57,5 +57,3 @@ class YoutubeApiClient:
             kwargs['pageToken'] = response['nextPageToken']
         return YoutubeAPIAdapter.modify_data(video_data)
 
-
-youtube_api_client = YoutubeApiClient()
