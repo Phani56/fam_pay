@@ -41,6 +41,8 @@ class Settings(Configuration):
         'django.contrib.staticfiles',
         'social_media.apps.SocialMediaConfig',
         'django_extensions',
+        'celery',
+        'rest_framework'
     ]
 
     MIDDLEWARE = [
@@ -54,6 +56,13 @@ class Settings(Configuration):
     ]
 
     ROOT_URLCONF = 'fam_pay.urls'
+
+    REST_FRAMEWORK = {
+        'DEFAULT_RENDERER_CLASSES': (
+            'rest_framework.renderers.JSONRenderer',
+        ),
+        'DEFAULT_PAGINATION_CLASS': 'fam_pay.common.StandardResultsSetPagination',
+    }
 
     TEMPLATES = [
         {
@@ -104,6 +113,33 @@ class Settings(Configuration):
 
     # Internationalization
     # https://docs.djangoproject.com/en/3.1/topics/i18n/
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'verbose': {
+                'format': '[%(levelname)s %(asctime)s] [%(module)s %(process)d %(thread)d] %(message)s'
+            },
+            'simple': {
+                'format': '%(asctime)s %(levelname)s %(name)s %(message)s'
+            },
+        },
+        'handlers': {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            }
+        },
+        'loggers': {
+            'django.db.backends': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        }
+    }
 
     LANGUAGE_CODE = 'en-us'
 

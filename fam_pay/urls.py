@@ -16,6 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.conf.urls import include, url
+from rest_framework import routers
+from social_media.views import VideoArchiveViewSet
+
+
+social_media_router = routers.SimpleRouter()
+social_media_router.register(r'video-archive', VideoArchiveViewSet, 'video-archive')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^', include(social_media_router.urls))
 ]
