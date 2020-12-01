@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 def fetch_latest_videos():
     latest_video = VideoArchive.objects.order_by('-published_at').first()
     if not latest_video:
-        start_date = timezone.now() - timezone.timedelta(days=4)
+        start_date = timezone.now() - timezone.timedelta(days=10)
     else:
         start_date = latest_video.published_at
     end_date = timezone.now()
@@ -23,6 +23,6 @@ def fetch_latest_videos():
 
         # check for duplicates, move this to model clean method
         if VideoArchive.objects.filter(external_id=video['external_id']).exists():
-            logger.info('duplicate found for external_id %s', video['external_id'])
+            logger.error('duplicate found for external_id %s', video['external_id'])
             continue
         VideoArchive.objects.create(**video)

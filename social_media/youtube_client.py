@@ -40,7 +40,8 @@ class YoutubeApiClient:
             raise YoutubeAPIException('start date missing')
 
         if (end_date - start_date).days > 30:
-            # added this check for local testing purpose
+            # added this check for local testing purpose and also quota limit
+            logger.error('Interval too big to fetch all the videos')
             raise YoutubeAPIException('interval too big')
 
         kwargs = {'part': 'snippet', 'maxResults': 50, 'q': query, 'order': 'date',
@@ -48,12 +49,12 @@ class YoutubeApiClient:
                   'publishedBefore': end_date.strftime(YOUTUBE_DATE_FORMAT), 'type': 'video'}
 
         while True:
-            print ('in loop')
             request = self.youtube_service.search().list(**kwargs)
             response = request.execute()
             video_data.extend(response['items'])
             if len(response['items']) < 50:
                 break
             kwargs['pageToken'] = response['nextPageToken']
+        logger.info('Results fetched for query {} from {} to {}'.format(query, start_date, end_date))
         return YoutubeAPIAdapter.modify_data(video_data)
 

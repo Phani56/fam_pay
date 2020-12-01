@@ -1,3 +1,4 @@
+import logging
 
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
@@ -6,6 +7,7 @@ from rest_framework.filters import SearchFilter
 from social_media.models import VideoArchive
 from social_media.serializers import VideoArchiveSerializer
 
+logger = logging.getLogger(__name__)
 # Create your views here.
 
 

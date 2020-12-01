@@ -88,9 +88,11 @@ class Settings(Configuration):
     # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "fam_pay_assignment",
+            "USER": "postgres",
+            "PASSWORD": "postgres",
         }
     }
 
@@ -119,12 +121,8 @@ class Settings(Configuration):
         'version': 1,
         'disable_existing_loggers': False,
         'formatters': {
-            'verbose': {
-                'format': '[%(levelname)s %(asctime)s] [%(module)s %(process)d %(thread)d] %(message)s'
-            },
-            'simple': {
-                'format': '%(asctime)s %(levelname)s %(name)s %(message)s'
-            },
+                  'verbose': {'format': '[%(levelname)s %(asctime)s] [%(module)s %(process)d %(thread)d] %(message)s'
+            }
         },
         'handlers': {
             'console': {
@@ -137,6 +135,11 @@ class Settings(Configuration):
             'django.db.backends': {
                 'handlers': ['console'],
                 'level': 'DEBUG',
+                'propagate': False,
+            },
+            'django': {
+                'handlers': ['console'],
+                'level': 'INFO',
                 'propagate': True,
             },
         }
